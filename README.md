@@ -119,6 +119,7 @@ entra dentro dese case porem sai e executa os outros cases
 ```go
 time.Now() // Pega a data e hora atual
 ```
+
 ---
 
 ### Arrays
@@ -316,4 +317,93 @@ Código da aula:
 	s = append(s, 15)
 	fmt.Println(s, len(s), cap(s))
 
+```
+
+### Append
+
+Função para adicionar elementos em um slice, caso a quantidade de elementos que você vai adicionar seja maior que a tamanho do slice a propria função se encarrega de criar um novo slice com o dobro do tamanho e fazer a referencia pra esse novo slice 
+
+- Essa adiciona mais elementos no **final** do slice
+- Retorna um novo slice
+
+Syntaxe:
+
+```go
+slice := make([]int,6)
+var slice2 []int
+slice2 = append(slice,1,2,3)
+// Saida: [0 0 0 0 0 0 1 2 3]
+
+/// ou /////
+
+slice := make([]int,6)
+slice2 := append(slice,4,5,6)
+// Saida: [0 0 0 0 0 0 4 5 6]
+```
+
+### Copy
+
+Essa função não gera com novo slice como o append, ela simplesmente copia os dados de um slice pra outro, caso a slice de destino seja menor que o de origem ela vai copiar apenas os elementos que cabem
+
+- Não gera um novo slice
+- Não expande o slice
+
+sintaxe:
+
+```go
+slice := []int{1,2,3,4,5}
+slice2 := make([]int,2)
+//  DESTINO,ORIGEM 
+copy(slice2,slice)
+fmt.Println(slice2)
+//Output: [1 2]
+```
+
+## Maps
+
+Em GO chamamos de maps mas essa estrutura pode ser chamada de HashMap ou até mesmo de Dict dependendo da linguagem
+
+- Ela precisa ser inicializada não basta apenas definir
+- Estrutura chave valor
+- Chave não pode ter repetição
+- Chave sem vai ser um tipo homógeno
+- Valor sempre vai ser um tipo homógeno
+
+```go
+//var mapa map[tipo_chave]tipo_valor
+var mapa map[int]string
+mapa = make(map[int],string)
+
+/// ou ///
+mapa := make(map[int]string)
+
+/// ou ///
+
+livrosNotas := map[string]int{
+"1984":10,
+"O Médico e o monstro":9
+
+}
+
+```
+
+Acessar um valor:
+
+```go
+habitantesCidades := map[string]int{
+	"Colatina":1333,
+	"Linhares":49999,
+}
+fmt.Println(habitantesCidades["Colatina"])
+//Output: 1333
+```
+
+Delete:
+
+Para remover um elemento de um map é bastante simples, caso a chave não existe o código não faz nada e também não gera nenhum erro
+
+sintax:
+
+```go
+delete(nome_do_map,chave_do_elemento)
 ```
