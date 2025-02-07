@@ -407,3 +407,104 @@ sintax:
 ```go
 delete(nome_do_map,chave_do_elemento)
 ```
+
+### Map Aninhados
+
+Os maps aninhados nada mais é que um map dentro de um outro map
+
+syntax:
+
+```go
+funcsPorLetra := map[string]map[string]string
+// map [TIPO_CHAVE] map [TIPO_CHAVE] TIPO_VALOR
+```
+
+code aula:
+
+```go
+
+	//                   CHAVE VALOR CHAVE VALOR
+	funcsPorLetra := map[string]map[string]float64{
+		"A": {
+			"Amanda":   1556.00,
+			"Anderson": 9001.00,
+		},
+		"M": {
+			"Mateus": 199.80,
+			"Maicon": 9888.00,
+		},
+	}
+	//delete(funcsPorLetra, "A") // DELETA O MAP
+
+	for letra := range funcsPorLetra {
+		fmt.Println(letra)
+		for k, v := range funcsPorLetra[letra] {
+			fmt.Println("\t", k, v)
+		}
+		fmt.Println(letra)
+	}
+	//var funcs map[string]map[string]string // funciona assim
+```
+
+## Funções
+
+Em go as função são cidadães de 1° classe, ou seja:
+
+- Posso passar funções para funções
+- Posso retornar uma função
+- Posso atribuir um variável com um um retorno da função
+
+Em go se você definiu que a função vai retornar um valor 
+
+você precisa retornar um valor ,
+
+---
+
+obs:
+
+O ideal quando trabalhamos com funções é que elas sejam puras, como assim,
+
+uma função na acessa coisas do escopo global do código 
+
+pra ficar mais claro, eu defino uma função passos os parametros ela pega os parametros processa 
+
+dentro do bloco dela e retorna uma valor se preciso
+
+---
+
+### Tipos de funções
+
+```go
+// Não recebe e não retorna nada
+func f1() {
+	fmt.Println("F1")
+}
+```
+
+```go
+/ Recene 2 parametros mas não retorna nada
+func f2(p1 string, p2 string) {
+	fmt.Printf("FS: %s %s\n", p1, p2)
+}
+```
+
+```go
+// Não recebe para metro mas retorna uma string
+func f3() string {
+	return "F3"
+}
+```
+
+```go
+// Recebe 2 parametros e retorna 1 valor
+func f4(p1, p2 string) string {
+	return fmt.Sprintf("%s %s", p1, p2)
+}
+```
+
+```go
+// Não recebe parametros e retorna dois valores
+func f5() (error, string, int) {
+	return nil, "F5", 9
+}
+```
